@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Backend on learn-WebRTC",
+  "description": "Backend of learn-WebRTC",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
