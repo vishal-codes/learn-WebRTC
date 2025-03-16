@@ -309,7 +309,7 @@ export default function Playground() {
   };
 
   return (
-    <div className="flex h-auto md:h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white font-sans">
+    <div className="flex h-auto bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white font-sans">
       {!isConnected ? (
         <div className="w-full h-screen p-8 flex flex-col items-center justify-center">
           <div className="max-w-2xl w-full">
@@ -347,7 +347,7 @@ export default function Playground() {
           </div>
         </div>
       ) : (
-        <div className="w-full md:h-[88vh] flex flex-col md:flex-row">
+        <div className="w-full flex flex-col md:flex-row">
           <div className="w-full md:w-1/3 border-r border-gray-700 p-4 flex flex-col order-1 md:order-none">
             <div className="mb-6">
               <button

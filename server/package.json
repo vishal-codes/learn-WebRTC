@@ -14,8 +14,7 @@
     "@google/generative-ai": "^0.24.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "socket.io": "^4.8.1",
-    "treblle": "^1.5.1"
+    "socket.io": "^4.8.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
