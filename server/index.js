@@ -1,7 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const { Server } = require("socket.io");
-const http = require("http");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const app = express();
 dotenv.config();
@@ -15,18 +15,45 @@ app.use((req, res, next) => {
 });
 app.use(express.json({ limit: "10MB" }));
 
+const server = app.listen(PORT, () =>
+  console.log(
+    "Hello! This is learn-WebRTC's Backend, listening on port - ",
+    PORT
+  )
+);
+
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
-const server = http.createServer(app);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({
+  model: "gemini-2.0-flash",
+  systemInstruction:
+    "You are a WebRTC architect with 15+ years experience. When users ask about WebRTC concepts or errors, you shouldReference: STUN/TURN, SDP offers, media tracks, or signalingTroubleshooting Checklist (for errors):First check: Network permissions/console errorsSecond check: ICE candidate types gatheredThird check: SDP compatibilityAlways:Use MArkdownUse analogies from telecom/transportation systemsCompare browser implementations (Chrome v116 vs Safari 16.4)Never assume knowledge beyond basic JavaScriptAsk for these if stuck: console logs, SDP snippet, ICE stateResponse Format🎯 Core Concept (1 sentence)🔧 Analogy (Everyday comparison)💻 Technical Deep Dive (3 bullet points max)✅ Solution (Code example with error handling)",
+});
+app.post("/chat", async (req, res) => {
+  try {
+    const chatHistory = req.body.history || [];
+    const msg = req.body.chat;
+    const chat = model.startChat({
+      history: chatHistory,
+    });
+    const result = await chat.sendMessage(msg);
+    const response = await result.response;
+    const text = response.text();
+    res.send({ text: text });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 const io = new Server(server, {
   cors: {
     origin: process.env.CLIENT_URL,
-    methods: ["GET", "POST"],
   },
 });
-
 const rooms = new Map();
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
@@ -90,8 +117,4 @@ io.on("connection", (socket) => {
       }
     }
   });
-});
-
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
 });
