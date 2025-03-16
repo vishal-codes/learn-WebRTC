@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const { Server } = require("socket.io");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { useTreblle } = require("treblle");
 
 const app = express();
 dotenv.config();
@@ -14,6 +15,13 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.json({ limit: "10MB" }));
+
+if (process.env.NODE_ENV === "PRODUCTION") {
+  useTreblle(app, {
+    apiKey: process.env.TREBLLE_API_KEY,
+    projectId: process.env.TREBLLE_PROJECT_ID,
+  });
+}
 
 const server = app.listen(PORT, () =>
   console.log(
