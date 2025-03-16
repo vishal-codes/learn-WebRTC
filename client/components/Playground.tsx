@@ -412,7 +412,7 @@ export default function Playground() {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-1/3 p-4 order-3 md:order-none">
+          <div className="w-full md:h-[88vh] md:w-1/3 p-4 order-3 md:order-none">
             <ChatWindow />
           </div>
         </div>
