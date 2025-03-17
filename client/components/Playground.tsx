@@ -311,36 +311,48 @@ export default function Playground() {
   return (
     <div className="flex h-auto bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white font-sans">
       {!isConnected ? (
-        <div className="w-full h-screen p-8 flex flex-col items-center justify-center">
-          <div className="max-w-2xl w-full">
-            <div className="bg-gray-800 rounded-lg p-6">
-              <h2 className="text-2xl mb-4">Welcome {username}</h2>
-              <div className="space-y-4">
-                <div className="bg-gray-700 p-4 rounded-lg">
+        <div className="w-full md:h-screen p-8 flex flex-col md:flex-row items-center justify-center">
+          <div className="w-full md:w-1/3 bg-gray-700 rounded-lg p-6 mb-4 md:mb-0 md:mr-4">
+            <h2 className="text-2xl mb-4">Steps to Use WebRTC Playground</h2>
+            <ol className="list-decimal list-inside space-y-2 text-white">
+              <li>
+                Create a new room by clicking the "Create New Room" button.
+              </li>
+              <li>Open the same app in another tab or window.</li>
+              <li>
+                In the new tab, enter the Room ID from the first tab in the
+                "Enter Room ID" field.
+              </li>
+              <li>Click "Join Existing Room".</li>
+              <li>Follow the connection steps shown in the room.</li>
+            </ol>
+          </div>
+          <div className="md:ml-20 bg-gray-800 rounded-lg p-6">
+            <h2 className="text-2xl mb-4">Welcome {username}</h2>
+            <div className="space-y-4">
+              <div className="bg-gray-700 p-4 rounded-lg">
+                <button
+                  onClick={createRoom}
+                  className="w-full bg-green-600 py-2 rounded hover:bg-green-700"
+                >
+                  Create New Room
+                </button>
+              </div>
+              <div className="bg-gray-700 p-4 rounded-lg">
+                <div className="space-y-2">
+                  <input
+                    type="text"
+                    value={roomIdInput}
+                    onChange={(e) => setRoomIdInput(e.target.value)}
+                    placeholder="Enter Room ID"
+                    className="w-full bg-gray-600 rounded px-3 py-2"
+                  />
                   <button
-                    onClick={createRoom}
-                    className="w-full bg-green-600 py-2 rounded hover:bg-green-700"
+                    onClick={joinRoom}
+                    className="w-full bg-purple-600 py-2 rounded hover:bg-purple-700"
                   >
-                    Create New Room
+                    Join Existing Room
                   </button>
-                </div>
-
-                <div className="bg-gray-700 p-4 rounded-lg">
-                  <div className="space-y-2">
-                    <input
-                      type="text"
-                      value={roomIdInput}
-                      onChange={(e) => setRoomIdInput(e.target.value)}
-                      placeholder="Enter Room ID"
-                      className="w-full bg-gray-600 rounded px-3 py-2"
-                    />
-                    <button
-                      onClick={joinRoom}
-                      className="w-full bg-purple-600 py-2 rounded hover:bg-purple-700"
-                    >
-                      Join Existing Room
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
