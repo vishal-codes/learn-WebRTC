@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Learn WebRTC
+
+**Learn WebRTC** is an interactive project designed to help developers understand and implement WebRTC (Web Real-Time Communication) technology. This project provides hands-on examples and tutorials to facilitate learning.
+<img src='repoImages/mockup.png'>
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Application](#running-the-application)
+- [Project Structure](#project-structure)
+
+## Introduction
+
+WebRTC enables real-time communication capabilities to web applications, allowing audio, video, and data sharing between peers. This project aims to demystify WebRTC by providing practical examples and a clear learning path.
+
+## Features
+
+- Interactive examples demonstrating WebRTC functionalities.
+- Step-by-step tutorials to build real-time communication features.
+- Code snippets and explanations for better understanding.
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to set up and run the project locally.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Node.js](https://nodejs.org/) (version 18 or higher)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. **Clone the repository:**
 
-## Learn More
+   ```bash
+   git clone https://github.com/vishal-codes/learn-WebRTC.git
+   cd learn-WebRTC
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Navigate to the client directory:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   cd client
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. **Install dependencies:**
 
-## Deploy on Vercel
+   Using npm:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. **Navigate to the server directory:**
+
+   ```bash
+   cd server
+   ```
+
+5. **Install dependencies:**
+
+   Using npm:
+
+   ```bash
+   npm install
+   ```
+
+### Running the Application
+
+1. **Start the frontend server:**
+
+   Using npm:
+
+   ```bash
+   npm run dev
+   ```
+
+2. **Start the backend server:**
+
+   Using npm:
+
+   ```bash
+   npm run dev
+   ```
+
+3. **Open your browser and visit:**
+
+   ```
+   http://localhost:3000
+   ```
+
+   You should see the application running.
+
+## Project Structure
+
+The project is divided into two main directories:
+
+- **client/**: Contains the front-end code built with Next.js.
+- **server/**: Contains the back-end code (if applicable).
+
+|          |                 Technologies                 |
+| -------- | :------------------------------------------: |
+| Frontend |     Next.js, Tailwind CSS, Framer Motion     |
+| Backend  | Express.js, Google Gemini, Socket-io, WebRTC |
