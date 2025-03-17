@@ -7,7 +7,13 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-50 border-none rounded-full w-full py-4 px-4">
       <nav className="backdrop-blur container mx-auto  flex items-center justify-between h-16 rounded-full border shadow-xl border-gray-800 bg-gray-900/50">
         <div className="flex items-center ml-5">
-          <WebRTCLogo className="h-8 w-8" />
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://webrtc.org/"
+          >
+            <WebRTCLogo className="h-8 w-8" />
+          </a>
         </div>
         <div className="hidden md:flex space-x-4">
           <a

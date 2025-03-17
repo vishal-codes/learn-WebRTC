@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { generateUsername } from "unique-username-generator";
 import io from "socket.io-client";
 import ChatWindow from "./ChatWindow";
+import { motion, AnimatePresence } from "framer-motion";
 
 const socket = io(process.env.NEXT_PUBLIC_SERVER_URL);
 
@@ -25,6 +26,7 @@ export default function Playground() {
   const [connectionStatus, setConnectionStatus] = useState<string[]>([]);
   const [iceState, setIceState] = useState("disconnected");
   const [streamState, setStreamState] = useState<MediaStream | null>(null);
+  const [showPopover, setShowPopover] = useState(true);
 
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
@@ -259,6 +261,7 @@ export default function Playground() {
       socket.off("offer");
       socket.off("answer");
       socket.off("ice-candidate");
+      setShowPopover(true);
     };
   }, [role]);
 
@@ -406,11 +409,45 @@ export default function Playground() {
             </div>
           </div>
           <div className="w-full md:w-1/3 border-r border-gray-700 p-4 flex flex-col order-2 md:order-none">
-            <div className="bg-gray-800 rounded-lg p-4">
+            <div className="bg-gray-800 rounded-lg p-4 relative">
               <h2 className="text-xl mb-4">
                 {role === "offerer" ? "Offerer" : "Answerer"} Steps
               </h2>
               <div className="space-y-2">{steps.map(renderStepButton)}</div>
+              <AnimatePresence>
+                {showPopover && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.6 }}
+                    className="
+              absolute left-3/2 transform -translate-x-1/2 top-full mt-2 w-64
+              bg-gray-700 text-white p-4 rounded shadow-lg z-10
+            "
+                  >
+                    <div
+                      className="absolute left-1/2 transform -translate-x-1/2 -top-2 w-0 h-0"
+                      style={{
+                        borderLeft: "8px solid transparent",
+                        borderRight: "8px solid transparent",
+                        borderBottom: "8px solid #374151",
+                      }}
+                    />
+                    <p className="mb-2 text-sm">
+                      You are the {role === "offerer" ? "Offerer" : "Answerer"}.
+                      Click each step in sync with the
+                      {role === "offerer" ? " Answerer" : " Offerer"}!
+                    </p>
+                    <button
+                      onClick={() => setShowPopover(false)}
+                      className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm"
+                    >
+                      Close
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <div className="bg-gray-800 rounded-lg p-4 mt-4 flex-1">
