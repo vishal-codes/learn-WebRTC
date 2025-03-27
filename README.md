@@ -100,7 +100,7 @@ Follow these instructions to set up and run the project locally.
 The project is divided into two main directories:
 
 - **client/**: Contains the front-end code built with Next.js.
-- **server/**: Contains the back-end code (if applicable).
+- **server/**: Contains the back-end code.
 
 |          |                 Technologies                 |
 | -------- | :------------------------------------------: |
